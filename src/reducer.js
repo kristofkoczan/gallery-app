@@ -23,16 +23,6 @@ export default function reducer(state = [], action){
                     }
                 ];
             }
-        case "upload":
-            return [
-                ...state,
-                {
-                    title: "file",
-                    username: action.payload.username,
-                    file: action.payload.file,
-                    url: action.payload.url,
-                }
-            ];
         default:
             return state;
     }  

@@ -1,7 +1,5 @@
 import React from 'react'
 import store from '../store'
-import Upload from './Upload'
-import Pictures from './Pictures'
 
 const MainField = () => {
     function check(user){
@@ -21,8 +19,6 @@ const MainField = () => {
             <div>
                 <h1>Welcome {currentUser()}</h1>
             </div>
-            <Upload />
-            <Pictures />
         </div>
     )
 }
