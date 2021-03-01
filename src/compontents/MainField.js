@@ -1,13 +1,12 @@
 import React from 'react'
 import store from '../store'
-import currentUser from '../getCurrentUser'
 
 const MainField = () => {
 
     return (
         <div>
             <div>
-                <h1>Welcome {currentUser()}</h1>
+                <h1>Welcome {store.getState()[0].username}</h1>
             </div>
         </div>
     )

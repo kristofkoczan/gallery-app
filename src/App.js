@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import store from './store'
-import currentUser from './getCurrentUser'
 import MainField from './compontents/MainField'
 import Pictures from './compontents/Pictures'
 import UploadPicture from './compontents/UploadPicture'
@@ -43,7 +42,6 @@ function App() {
             setLogedin(true);
             console.log("Bejelentkezes")
           }
-          console.log(username)
           console.log(store.getState())
         }
 
@@ -119,10 +117,11 @@ function App() {
       const newPicture = {
           id: pictures.length+1,
           type: "picture",
-          username: currentUser(),
+          username: store.getState()[0].username,
           file: url,
           date: JSON.stringify(date).slice(1, 11),
           likes: 0,
+          comments: []
       }
 
       setPictures([...pictures, newPicture]);  
