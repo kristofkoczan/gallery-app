@@ -29,7 +29,8 @@ export default function reducer(state = [], action){
                 {
                     title: "file",
                     username: action.payload.username,
-                    file: action.payload.file
+                    file: action.payload.file,
+                    url: action.payload.url,
                 }
             ];
         default:
