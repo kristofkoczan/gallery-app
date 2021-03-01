@@ -114,7 +114,6 @@ function App() {
   const uploadPicture = async event => {
 
     let url = await preview(event);
-    console.log(url);
 
       let date = new Date();
       const newPicture = {
@@ -126,9 +125,12 @@ function App() {
           likes: 0,
       }
 
-      setPictures([...pictures, newPicture]);
-      
-  }      
+      setPictures([...pictures, newPicture]);  
+  }  
+
+  const ShowPictures = () => {
+    console.log(pictures)
+  }
         
 
   if(!logedin){
@@ -155,6 +157,7 @@ function App() {
           <MainField />
           <UploadPicture uploadPicture={uploadPicture}/>
           {pictures.length > 0 ?<Pictures pictures={pictures} onDelete={deletePicture} onLikePicture={onLikePicture} /> : 'No picture uploaded'}
+          <button onClick={ShowPictures}>Show me now</button>
       </div>
     )
   }

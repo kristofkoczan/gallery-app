@@ -9,7 +9,7 @@ export default function currentUser(){
     }
 
     let nameOfUser = "";
-    store.getState().forEach(user => nameOfUser = check(user))
+    store.getState().forEach(user => user.current === true ? nameOfUser = user.username : "")
     return nameOfUser
     
 }
