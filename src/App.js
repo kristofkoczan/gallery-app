@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import store from './store'
+import currentUser from './getCurrentUser'
 import MainField from './compontents/MainField'
 import Pictures from './compontents/Pictures'
 import UploadPicture from './compontents/UploadPicture'
@@ -55,9 +56,7 @@ function App() {
           }
         }
 
-  //Picture
-
-
+  //Picture Uploading
   const [pictures, setPictures] = useState([
       {   
           id: 1,
@@ -121,7 +120,7 @@ function App() {
       const newPicture = {
           id: pictures.length+1,
           type: "picture",
-          username: "Admin",
+          username: currentUser(),
           file: url,
           date: JSON.stringify(date).slice(1, 11),
           likes: 0,

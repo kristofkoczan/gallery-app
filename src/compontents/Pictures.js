@@ -1,21 +1,9 @@
 import Picture from './Picture'
 import store from '../store'
+import currentUser from '../getCurrentUser'
 
 
 
-function currentUser(){
-
-    function check(user){
-        if(user.current){
-            return user.username
-        }
-    }
-
-    let nameOfUser = "";
-    store.getState().forEach(user => nameOfUser = check(user))
-    return nameOfUser
-    
-}
 
 
 const Pictures = ({ pictures, onDelete, onLikePicture}) => {
