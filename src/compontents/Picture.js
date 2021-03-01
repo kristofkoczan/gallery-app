@@ -1,7 +1,15 @@
 import { FaTimes } from 'react-icons/fa'
 
-const Picture = ({ picture, onLikePicture }) => {
-    return (
+
+
+let incrasedPictureID = 1;
+const Picture = ({ picture, onLikePicture}) => {
+    const incrasedPicture = () => {
+        incrasedPictureID += 1; 
+    }
+  
+
+  return (
         <div style={{margin: "0% 30% 0% 30%" }}>
             <img src={picture.file} alt="adminPicture" style={{cursor: 'pointer', width: "80%", display: "block", margin: "auto"}}  onDoubleClick={() => onLikePicture(picture.id)}/>
             <table style={{ padding: '1em', width: '100%'}}>
