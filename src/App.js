@@ -25,6 +25,8 @@ function App() {
   //Login
         const [username, setUsername] = useState('');
         const [logedin, setLogedin] = useState(false);
+        const [sizeHelp, setSizeHelp] = useState(false);
+        const [sizeID, setsizeID] = useState('');
 
         const handleLogin = event => {
           event.preventDefault();
@@ -68,10 +70,12 @@ function App() {
               author: "Admin",
               comment: "Check out my first picture",
               createdAt: "2021-01-01",
+              commentID: 1530,
             },{
               author: "user989",
               comment: "It's awesome! :D",
               createdAt: "2021-01-05",
+              commentID: 212,
             }
           ]
       },
@@ -126,10 +130,14 @@ function App() {
   //Add a comment
   const addComment = (comment, id) => {
     const seged = (comments, newComment) => {
+        newComment =  {
+           ...newComment,
+           commentID: Math.random()*1532-1,
+        }
         comments = [...comments, newComment];
+        console.log(comments)
         return comments;
     }
-
 
     let date = new Date();
     let newComment = {   
@@ -138,6 +146,46 @@ function App() {
       createdAt: JSON.stringify(date).slice(1, 11),
     }
     setPictures(pictures.map((picture) => picture.id === id ? {...picture, comments: seged(picture.comments, newComment)} : picture))
+  }
+
+  //delete a comment
+  const deleteComment = (comment, pictureID, commentID) => {
+    setPictures(pictures.map(
+      (picture) => picture.id === pictureID 
+        ? {...picture, comments: picture.comments.filter((comment) => comment.commentID !== commentID)} 
+        : picture))
+    //console.log(comment, "  in:\n", pictureID, " which is:\n", commentID);
+  }
+
+  //Size
+  const incraseSize = (pictureID) => {
+    store.dispatch({
+      type: "incraseSize",
+      payload: {
+          pictureID: pictureID
+      }
+    });
+    if(store.getState()[1] === undefined){
+      setSizeHelp(false);
+      setsizeID('');
+    }else{
+      setSizeHelp(true);
+      setsizeID(pictureID)
+    }
+    console.log(store.getState())
+  }
+  const imageControl = (newID, way) => {
+    if(way === "up"){
+      newID === pictures.length ? newID = 1 : newID = newID + 1;
+      console.log(newID)
+    }else{
+      newID === 1 ? newID = pictures.length : newID = newID = newID-1;
+      console.log(newID)
+    }
+
+    setSizeHelp(true);
+    setsizeID(newID)
+    //console.log(newID)
   }
 
   //add picture
@@ -158,11 +206,6 @@ function App() {
 
       setPictures([...pictures, newPicture]);  
   }  
-
-  const ShowPictures = () => {
-    console.log(pictures)
-  }
-    
 
   if(!logedin){
     return(
@@ -187,8 +230,18 @@ function App() {
           </form>
           <MainField />
           <UploadPicture uploadPicture={uploadPicture}/>
-          {pictures.length > 0 ?<Pictures pictures={pictures} onDelete={deletePicture} onLikePicture={onLikePicture} addComment={addComment}/> : 'No picture uploaded'}
-          <button onClick={ShowPictures}>Show me now</button>
+          {pictures.length > 0 
+            ?<Pictures 
+                pictures={pictures} 
+                onDelete={deletePicture} 
+                onLikePicture={onLikePicture} 
+                addComment={addComment} 
+                incraseSize={incraseSize} 
+                sizeHelp={sizeHelp} 
+                imageControl={imageControl} 
+                sizeID={sizeID} 
+                deleteComment={deleteComment}/>
+            : 'No picture uploaded'}
       </div>
     )
   }
