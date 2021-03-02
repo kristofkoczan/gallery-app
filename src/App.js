@@ -63,6 +63,17 @@ function App() {
           file: "https://images.unsplash.com/photo-1550262838-265efb9b449d?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8c3plZ2VkfGVufDB8fDB8&ixlib=rb-1.2.1&w=1000&q=80",
           date: "2021-01-01",
           likes: 325,
+          comments: [
+            {
+              author: "Admin",
+              comment: "Check out my first picture",
+              createdAt: "2021-01-01",
+            },{
+              author: "user989",
+              comment: "It's awesome! :D",
+              createdAt: "2021-01-05",
+            }
+          ]
       },
       {   
           id: 2,
@@ -71,6 +82,7 @@ function App() {
           file: "https://dbtribute.org/wp-content/uploads/2020/10/Different-Types-of-Photography.jpg",
           date: "2021-01-01",
           likes: 325,
+          comments: []
       },
       {   
           id: 3,
@@ -79,6 +91,7 @@ function App() {
           file: "https://content3.jdmagicbox.com/comp/hyderabad/t2/040pxx40.xx40.181125050506.c5t2/catalogue/lax-leo-photography-hyderabad-0vyzvimzvb.jpg",
           date: "2021-01-01",
           likes: 335,
+          comments: []
       },
       {   
           id: 4,
@@ -87,6 +100,7 @@ function App() {
           file: "https://mallina-studio.com/wp-content/uploads/2019/07/Learn-Digital-Photography0.jpg",
           date: "2021-01-01",
           likes: 1325,
+          comments: []
       },
       {   
           id: 5,
@@ -95,6 +109,7 @@ function App() {
           file: "https://solomonturner.com/wp-content/uploads/2019/11/Photography.jpg",
           date: "2021-01-01",
           likes: 325,
+          comments: []
       },
   ])
 
@@ -106,6 +121,23 @@ function App() {
   //Like a picture
   const onLikePicture = (id) => {
     setPictures(pictures.map((picture) => picture.id === id ? {...picture, likes: picture.likes+1}  : picture))
+  }
+
+  //Add a comment
+  const addComment = (comment, id) => {
+    const seged = (comments, newComment) => {
+        comments = [...comments, newComment];
+        return comments;
+    }
+
+
+    let date = new Date();
+    let newComment = {   
+      author: store.getState()[0].username,
+      comment: comment,
+      createdAt: JSON.stringify(date).slice(1, 11),
+    }
+    setPictures(pictures.map((picture) => picture.id === id ? {...picture, comments: seged(picture.comments, newComment)} : picture))
   }
 
   //add picture
@@ -130,7 +162,7 @@ function App() {
   const ShowPictures = () => {
     console.log(pictures)
   }
-        
+    
 
   if(!logedin){
     return(
@@ -155,7 +187,7 @@ function App() {
           </form>
           <MainField />
           <UploadPicture uploadPicture={uploadPicture}/>
-          {pictures.length > 0 ?<Pictures pictures={pictures} onDelete={deletePicture} onLikePicture={onLikePicture} /> : 'No picture uploaded'}
+          {pictures.length > 0 ?<Pictures pictures={pictures} onDelete={deletePicture} onLikePicture={onLikePicture} addComment={addComment}/> : 'No picture uploaded'}
           <button onClick={ShowPictures}>Show me now</button>
       </div>
     )
