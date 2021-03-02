@@ -19,8 +19,6 @@ const readURL = file => {
   };
 
 
-
-
 function App() {
   //Login
         const [username, setUsername] = useState('');
@@ -119,6 +117,9 @@ function App() {
 
   //delete a picture
   const deletePicture = (id) => {
+    if(sizeHelp && sizeID === id){
+      imageControl(id, "down");
+    }
     setPictures(pictures.filter((picture) => picture.id !== id))
   }
   
@@ -209,16 +210,16 @@ function App() {
 
   if(!logedin){
     return(
-      <div>
-        <h1>Please log in</h1>
+      <div >
+        <h1 className={'centerText'}>Please log in</h1>
         <form onSubmit={handleLogin}>
-          <fieldset>
+          <fieldset className={'loginDiv'}>
             <label>
-              <p>Name</p>
-              <input name="name" value={username} onChange={(e) => setUsername(e.target.value)}/>
-            </label>
+              <input name="name" placeholder={"Username"} value={username} onChange={(e) => setUsername(e.target.value)}/>
+            </label><br/><br/>
+            <button type="submit">Submit</button>
           </fieldset>
-          <button type="submit">Submit</button>
+
         </form>
       </div>
     )
@@ -226,7 +227,7 @@ function App() {
     return(
       <div>
           <form onSubmit={handleLogout}>
-            <button type="submit">LogOut</button>
+            <button className={'alignCenter2'} type="submit">Log out</button>
           </form>
           <MainField />
           <UploadPicture uploadPicture={uploadPicture}/>

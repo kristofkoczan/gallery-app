@@ -9,7 +9,17 @@ const Pictures = ({ pictures, onDelete, onLikePicture, addComment, incraseSize, 
             <div className={'flexBox'}>
                     <AiFillCaretLeft className={'AiFillCaret'} onClick={() => imageControl(sizeID, "down")}/>
                     {pictures.slice(0).reverse().map((picture) => (  
-                        picture.id === sizeID ? <Picture key={picture.id} picture={picture} onDelete={onDelete} onLikePicture={onLikePicture} addComment={addComment} incraseSize={incraseSize} pictureSize={"100%"} sizeHelp={sizeHelp} deleteComment={deleteComment}/> : ""
+                        picture.id === sizeID 
+                        ? <Picture  key={picture.id} 
+                                    picture={picture} 
+                                    onDelete={onDelete} 
+                                    onLikePicture={onLikePicture} 
+                                    addComment={addComment} 
+                                    incraseSize={incraseSize} 
+                                    pictureSize={"100%"} 
+                                    sizeHelp={sizeHelp} 
+                                    deleteComment={deleteComment}/> 
+                        : ""
                     ))}
                     <AiFillCaretRight className={'AiFillCaret'} onClick={() => imageControl(sizeID, "up")}/>
             </div>

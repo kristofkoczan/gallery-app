@@ -24,8 +24,9 @@ const Picture = ({ picture, onLikePicture, onDelete, addComment, incraseSize, pi
             <div style={{margin: "0% 30% 0% 30%"}}>
                 <img src={picture.file} alt="adminPicture" style={{cursor: 'pointer', width: pictureSize, display: "block", margin: "auto"}} 
                     onClick={() => incraseSize(picture.id)}/>
-                {store.getState()[0].username === picture.username ? <FaTimes style={{color: 'red', cursor: 'pointer'}} onClick={() => onDelete(picture.id)}/> : ""}
+               
                 <FaAngleUp style={{color: 'green', cursor: 'pointer'}} onClick={() => onLikePicture(picture.id)}/>
+                 {store.getState()[0].username === picture.username ? <FaTimes style={{color: 'red', cursor: 'pointer', position: "relative", left: "94%"}} onClick={() => onDelete(picture.id)}/> : ""}
                 <table style={{ padding: '1em', width: '100%'}}>
                     <tbody>
                         <tr>
@@ -37,15 +38,16 @@ const Picture = ({ picture, onLikePicture, onDelete, addComment, incraseSize, pi
                 </table>
                 
                 <Comment onSubmit={onSubmit} picture={picture} comment={comment} setComment={setComment} deleteComment={deleteComment}/>
-                <form onSubmit={onSubmit}>
-                    <input type='text' placeholder='New comment' value={comment} onChange={(e) => setComment(e.target.value, picture.id)} />
-                    <button type="submit">Send</button>
+
+                <form onSubmit={onSubmit} className={'alignCenter'} style={{width: "20em", border: "none"}}>
+                    <input className={'sendinput'} type='text' placeholder='New comment' value={comment} onChange={(e) => setComment(e.target.value, picture.id)} />
+                    <button className={'sendbutton'} type="submit">Send</button>
                 </form>
             </div>
         )
     }else{
         return (
-            <div style={{margin: "0% 30% 0% 30%"}}>
+            <div style={{width: "30%", margin: "0% 35%"}}>
                 <img src={picture.file} alt="adminPicture" style={{cursor: 'pointer', width: pictureSize, display: "block", margin: "auto"}} 
                     onClick={() => incraseSize(picture.id)}/>
                 <table style={{ padding: '1em', width: '100%'}}>

@@ -3,9 +3,12 @@ const UploadPicture = ({ uploadPicture }) => {
 
     return (
         <div>
-            <form style={{margin: "3% 0%"}}>
-                 <label>Select image:</label>
-                    <input type="file" id="img" name="img" accept="image/*" onChange={(event) => uploadPicture(event)}/>
+            <form className={"formClass"}>
+                    <label className="alignCenter">
+                        <input style={{display: "none"}} type="file" id="img" name="img" accept="image/*" onChange={(event) => uploadPicture(event)}/>
+                        Upload picture
+                    </label>
+                    
             </form>
         </div>
     )
