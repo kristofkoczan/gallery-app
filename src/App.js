@@ -173,8 +173,10 @@ function App() {
       setSizeHelp(true);
       setsizeID(pictureID)
     }
-    console.log(store.getState())
+    //console.log(store.getState())
   }
+
+  //control the paging 
   const imageControl = (newID, way) => {
     if(way === "up"){
       newID === pictures.length ? newID = 1 : newID = newID + 1;
@@ -191,9 +193,9 @@ function App() {
 
   //add picture
   const uploadPicture = async event => {
-
-    let url = await preview(event);
-
+    if(event.target.value !== undefined && event.target.value !== ''){
+      console.log(event.target.value)
+      let url = await preview(event);
       let date = new Date();
       const newPicture = {
           id: pictures.length+1,
@@ -204,8 +206,9 @@ function App() {
           likes: 0,
           comments: []
       }
-
       setPictures([...pictures, newPicture]);  
+    }
+
   }  
 
   if(!logedin){

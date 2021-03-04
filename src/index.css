@@ -82,10 +82,118 @@ code {
 }
 .flexBox{
   display: flex;
-  align-content: center;
+  flex-wrap: wrap;
 }
+.tooltip > img {
+  transition: transform .2s;
+}
+.tooltip > img:hover{
+  transform: scale(1.05);
+}
+.flexBox2{
+  display: flex;
+  width: 100%;
+  position: absolute;
+}
+.control{
+  width: 20%;
+}
+.control1{
+  position: absolute;
+  left: 5%;
+}
+.control2{
+  position: absolute;
+  right: 5%;
+}
+#pictureDiv{
+  width: 60%;
+  align-content: center;
+
+}
+#pictureDiv >div >div >img {
+  width: auto;
+  height: auto;
+  max-width: 500px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+#pictureDiv >div >div > span{
+  width: 70%;
+  margin-left: 15%;
+}
+
+
+
+.flexBox > div{
+  margin: 0px 50px;
+
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.flexBox > div > *{
+  margin-bottom: 50px;
+  width: auto;
+}
+
+.flexBox > div > * > *{
+  /*Picture div*/
+  min-width: 300px;
+  max-width: 500px;  
+  height: 500px;
+  overflow: hidden;
+
+}
+.flexBox > div > * > * > img{
+  width: auto;
+  height: auto;
+  max-height: 400px;
+  max-width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.flexBox > div > * > * > span{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  width: 10%;
+}
+
+
+
+
+
 .AiFillCaret{
   margin-top: 10em;
-  width: 20em;
   cursor: pointer;
+}
+
+.tooltip {
+  position: relative;
+  display: block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid white;
+  background-color: #465C69;
+  padding: 5px;
+  position: absolute;
+  margin-top: 10px;
+  /* Position the tooltip */
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  
 }

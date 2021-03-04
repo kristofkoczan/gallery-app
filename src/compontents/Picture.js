@@ -21,21 +21,25 @@ const Picture = ({ picture, onLikePicture, onDelete, addComment, incraseSize, pi
 
     if(sizeHelp){
         return (
-            <div style={{margin: "0% 30% 0% 30%"}}>
-                <img src={picture.file} alt="adminPicture" style={{cursor: 'pointer', width: pictureSize, display: "block", margin: "auto"}} 
-                    onClick={() => incraseSize(picture.id)}/>
-               
-                <FaAngleUp style={{color: 'green', cursor: 'pointer'}} onClick={() => onLikePicture(picture.id)}/>
-                 {store.getState()[0].username === picture.username ? <FaTimes style={{color: 'red', cursor: 'pointer', position: "relative", left: "94%"}} onClick={() => onDelete(picture.id)}/> : ""}
-                <table style={{ padding: '1em', width: '100%'}}>
-                    <tbody>
-                        <tr>
-                            <th style={{width: "30%"}}><h5>Upload date: {picture.date}</h5></th>
-                            <th style={{width: "30%"}}>{picture.likes} Like</th>
-                            <th style={{width: "30%"}}>{picture.username}</th>
-                        </tr>
-                    </tbody>     
-                </table>
+            <div style={{width: '100%'}}>
+                <div style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}>
+                    <img src={picture.file} alt="adminPicture"  style={{cursor: 'pointer', width: "50em", display: "block"}} 
+                        onClick={() => incraseSize(picture.id)}/>
+                
+                    <span>
+                        <FaAngleUp style={{width: '30px', border: '1px solid white', backgroundColor: '#638396', borderRadius: '10px', padding: '4px 0px 0px 0px', color: 'black', cursor: 'pointer'}} onClick={() => onLikePicture(picture.id)}/>
+                        {store.getState()[0].username === picture.username 
+                            ? <FaTimes style={{width: '30px', border: '1px solid white', backgroundColor: '#638396', borderRadius: '10px', padding: '4px 0px 0px 0px', color: 'red', cursor: 'pointer', float: 'right', marginRight: '15%'}} onClick={() => onDelete(picture.id)}/> 
+                            : ""}
+                    </span>
+
+                    <span style={{display: 'flex', height: '30px', width: '70%', border: '1px solid white', borderRadius: '5px', padding: '5px 2px 0px 2px', backgroundColor: '#638396'}}>
+                        <div style={{width: '33%', textAlign: 'left'}}><b>Upload date: {picture.date}</b></div>
+                        <div style={{width: '33%', textAlign: 'center'}}><b>{picture.likes} Likes</b></div>
+                        <div style={{width: '33%', textAlign: 'right'}}><b>{picture.username}</b></div>
+                    </span>
+                </div>
+
                 
                 <Comment onSubmit={onSubmit} picture={picture} comment={comment} setComment={setComment} deleteComment={deleteComment}/>
 
@@ -47,18 +51,11 @@ const Picture = ({ picture, onLikePicture, onDelete, addComment, incraseSize, pi
         )
     }else{
         return (
-            <div style={{width: "30%", margin: "0% 35%"}}>
-                <img src={picture.file} alt="adminPicture" style={{cursor: 'pointer', width: pictureSize, display: "block", margin: "auto"}} 
-                    onClick={() => incraseSize(picture.id)}/>
-                <table style={{ padding: '1em', width: '100%'}}>
-                    <tbody>
-                    <tr>
-                        <th style={{width: "30%"}}><h5>Upload date: {picture.date}</h5></th>
-                        <th style={{width: "30%"}}>{picture.likes} Like</th>
-                        <th style={{width: "30%"}}>{picture.username}</th>
-                    </tr>
-                    </tbody>     
-                </table>
+            <div className={'tooltip'}>
+                <img src={picture.file} alt="adminPicture" style={{cursor: 'pointer'}} 
+                    onClick={() => incraseSize(picture.id)}>
+                </img><br/>
+                <span className={'tooltiptext'}>Uploaded: {picture.username}</span>
             </div>
         )
     }
