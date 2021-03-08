@@ -40,9 +40,9 @@ function App() {
           });
           if(!logedin){
             setLogedin(true);
-            console.log("Bejelentkezes")
+            //console.log("Bejelentkezes")
           }
-          console.log(store.getState())
+          //console.log(store.getState())
         }
 
         const handleLogout = event => {
@@ -50,7 +50,9 @@ function App() {
 
           if(logedin){
             setLogedin(false);
-            console.log("Kijelentkezes")
+            setSizeHelp(false);
+            setsizeID('');
+            //console.log("Kijelentkezes")
           }
         }
 
@@ -71,7 +73,7 @@ function App() {
               commentID: 1530,
             },{
               author: "user989",
-              comment: "It's awesome! :D",
+              comment: "It's awesome! 😀 You took this in Szeged, right? 😎",
               createdAt: "2021-01-05",
               commentID: 212,
             }
@@ -169,6 +171,9 @@ function App() {
     if(store.getState()[1] === undefined){
       setSizeHelp(false);
       setsizeID('');
+    }else if(pictureID===0){
+      setSizeHelp(false);
+      setsizeID('');
     }else{
       setSizeHelp(true);
       setsizeID(pictureID)
@@ -207,6 +212,9 @@ function App() {
           comments: []
       }
       setPictures([...pictures, newPicture]);  
+      if(sizeHelp){
+        setsizeID(pictures.length+1)
+      }
     }
 
   }  

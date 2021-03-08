@@ -18,12 +18,18 @@ button {
   color: #C4A69D;
   border: 1px solid #C4A69D;
 }
+button:hover {
+  background-color: #5E7D90;
+}
 input {
   background-color: #C4A69D;
   border-radius: 0.5em;
   padding: 0.5em;
   color: #201F33;
   border: 1px solid #A79CBF;
+}
+input:hover {
+  background-color: #EEC7BB;
 }
 .sendinput {
   border: 1px solid #C4A69D;
@@ -75,6 +81,10 @@ input {
   margin: 2% 0%;
 }
 
+.AiFillCaret:hover{
+  color: black;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -124,6 +134,9 @@ code {
   margin-left: 15%;
 }
 
+.flexBox{
+  max-width: 95%;
+}
 
 
 .flexBox > div{
@@ -132,6 +145,7 @@ code {
   display: block;
   margin-right: auto;
   margin-left: auto;
+  
 }
 
 .flexBox > div > *{
@@ -164,13 +178,49 @@ code {
   width: 10%;
 }
 
+#actionLike{
+  width: 30px; 
+  border: 1px solid white; 
+  background-color: #638396;
+  border-radius: 10px; 
+  padding: 4px 0px 0px 0px;
+  color: black; 
+  cursor: pointer;
+}
 
+#actionLike > *:hover{
+  color: green;
+}
 
+#actionDelete{
+  width: 30px; 
+  border: 1px solid white; 
+  background-color: #638396; 
+  border-radius: 10px; 
+  padding: 4px 0px 0px 0px;
+  color: black;
+  cursor: pointer;
+  float: right; 
+  margin-right: 15%;
+}
+
+#actionDelete > *:hover{
+  color: red;
+}
+#commentDelete{
+  color: black;
+  cursor: pointer;
+}
+
+#commentDelete:hover{
+  color: red;
+}
 
 
 .AiFillCaret{
   margin-top: 10em;
   cursor: pointer;
+  color: #C4A69D;
 }
 
 .tooltip {

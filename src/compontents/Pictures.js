@@ -6,24 +6,28 @@ const Pictures = ({ pictures, onDelete, onLikePicture, addComment, incraseSize, 
 
     if(sizeHelp){
         return(
-            <div className={'flexBox2'}>
-                    <div className={'control'}><AiFillCaretLeft className={'AiFillCaret control1'} onClick={() => imageControl(sizeID, "down")}/></div>
-                    <div id={'pictureDiv'}>
-                        {pictures.slice(0).reverse().map((picture) => (  
-                            picture.id === sizeID 
-                            ? <Picture  key={picture.id} 
-                                        picture={picture} 
-                                        onDelete={onDelete} 
-                                        onLikePicture={onLikePicture} 
-                                        addComment={addComment} 
-                                        incraseSize={incraseSize} 
-                                        pictureSize={"100%"} 
-                                        sizeHelp={sizeHelp} 
-                                        deleteComment={deleteComment}/> 
-                            : ""
-                        ))}
-                    </div>
-                    <div className={'control'}><AiFillCaretRight className={'AiFillCaret  control2'} onClick={() => imageControl(sizeID, "up")}/></div> 
+            <div >
+                    <button style={{display: 'block', margin: '0px auto 10px auto'}} onClick={() => incraseSize(0)}>Back to the main screen</button>
+
+                    <div className={'flexBox2'}>
+                        <div className={'control'}><AiFillCaretLeft className={'AiFillCaret control1'} onClick={() => imageControl(sizeID, "down")}/></div>
+                        <div id={'pictureDiv'}>
+                            {pictures.slice(0).reverse().map((picture) => (  
+                                picture.id === sizeID 
+                                ? <Picture  key={picture.id} 
+                                            picture={picture} 
+                                            onDelete={onDelete} 
+                                            onLikePicture={onLikePicture} 
+                                            addComment={addComment} 
+                                            incraseSize={incraseSize} 
+                                            pictureSize={"100%"} 
+                                            sizeHelp={sizeHelp} 
+                                            deleteComment={deleteComment}/> 
+                                : ""
+                            ))}
+                        </div>
+                        <div className={'control'}><AiFillCaretRight className={'AiFillCaret  control2'} onClick={() => imageControl(sizeID, "up")}/></div> 
+                    </div>  
             </div>
         )
     }else{

@@ -1,7 +1,7 @@
-import { FaTimes, FaAngleUp } from 'react-icons/fa'
-import { useState } from 'react'
-import Comment from './Comment'
-import store from '../store'
+import { FaTimes, FaAngleUp } from 'react-icons/fa';
+import { useState } from 'react';
+import Comment from './Comment';
+import store from '../store';
 
 
 
@@ -14,7 +14,51 @@ const Picture = ({ picture, onLikePicture, onDelete, addComment, incraseSize, pi
         if(!comment){
             alert('Please add a task!')
         }
-        addComment(comment, picture.id)
+        let newComment= comment.split('');
+        let newComment2 = [];
+        for(let i=0; i< newComment.length; i++){
+            if(newComment[i]===':' && newComment[i+1]==='D'){
+                newComment2.push('😀');
+                i++;
+            }else if(newComment[i]===':' && newComment[i+1]==='P'){
+                newComment2.push('😜');
+                i++;
+            }else if(newComment[i]==='>' && newComment[i+1]==='.' && newComment[i+2]==='<'){
+                newComment2.push('😝');
+                i+=2;
+            }else if(newComment[i]===':' && newComment[i+1]==='*'){
+                newComment2.push('😘');
+                i++;
+            }else if(newComment[i]==='B' && newComment[i+1]===')'){
+                newComment2.push('😎');
+                i++;
+            }else if(newComment[i]===':' && newComment[i+1]==='O'){
+                newComment2.push('😲');
+                i++;
+            }else if(newComment[i]==='O' && newComment[i+1]===':' && newComment[i+2]===')'){
+                newComment2.push('😇');
+                i+=2;
+            }else if(newComment[i]==='<' && newComment[i+1]==='3'){
+                newComment2.push('❤️');
+                i++;
+            }else if(newComment[i]===';' && newComment[i+1]===')'){
+                newComment2.push('😉');
+                i++;
+            }else if(newComment[i]==='°' && newComment[i+1]==='°' && newComment[i+2]==='.'){
+                newComment2.push('🙄');
+                i+=2;
+            }else if(newComment[i]==='?' && newComment[i+1]==='M'){
+                newComment2.push('🤷‍♂️');
+                i++;
+            }else if(newComment[i]==='?' && newComment[i+1]==='F'){
+                newComment2.push('🤷');
+                i++;
+            }else{
+                newComment2.push(newComment[i]);
+            }
+        }
+        console.log(newComment2);
+        addComment(newComment2, picture.id)
         setComment('')
 
     }
@@ -23,13 +67,12 @@ const Picture = ({ picture, onLikePicture, onDelete, addComment, incraseSize, pi
         return (
             <div style={{width: '100%'}}>
                 <div style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}>
-                    <img src={picture.file} alt="adminPicture"  style={{cursor: 'pointer', width: "50em", display: "block"}} 
-                        onClick={() => incraseSize(picture.id)}/>
+                    <img src={picture.file} alt="adminPicture"  style={{cursor: 'pointer', width: "50em", display: "block"}} onDoubleClick={() => onLikePicture(picture.id)}/>
                 
                     <span>
-                        <FaAngleUp style={{width: '30px', border: '1px solid white', backgroundColor: '#638396', borderRadius: '10px', padding: '4px 0px 0px 0px', color: 'black', cursor: 'pointer'}} onClick={() => onLikePicture(picture.id)}/>
+                        <FaAngleUp id={'actionLike'} onClick={() => onLikePicture(picture.id)}/>
                         {store.getState()[0].username === picture.username 
-                            ? <FaTimes style={{width: '30px', border: '1px solid white', backgroundColor: '#638396', borderRadius: '10px', padding: '4px 0px 0px 0px', color: 'red', cursor: 'pointer', float: 'right', marginRight: '15%'}} onClick={() => onDelete(picture.id)}/> 
+                            ? <FaTimes id={'actionDelete'} onClick={() => onDelete(picture.id)}/> 
                             : ""}
                     </span>
 
